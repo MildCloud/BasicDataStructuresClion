@@ -2,6 +2,26 @@
 #include <string>
 using namespace std;
 
+class carOwner {
+    private:
+        string name;
+        int age;
+    public:
+        friend class car;
+
+        carOwner () {
+            name = "Owner";
+            age = 0;
+        }
+
+        carOwner (string n, int a) {
+            name = n;
+            age = a;
+        }
+};
+
+
+
 class car {
     private:
         string brand;
@@ -27,6 +47,8 @@ class car {
 
         friend int staticCarNumber (car car);
         friend int staticCarPointer (car * carPointer);
+
+        void showCarWithOwner (carOwner * carOwner);
 };
 
 int car :: totalCarNumber = 0;
@@ -47,8 +69,14 @@ int staticCarPointer (car * carPointer) {
     return ++carPointer->totalCarNumber;
 }
 
+void car :: showCarWithOwner (carOwner * carOwner) {
+    cout << "This is a " << brand <<" car, belonging to " << carOwner->name << "." << endl;
+}
+
+
 int main () {
     car car1, car2 ("AE-86", 100), * normalCar;
+    carOwner car1Owner, car2Owner ("TengY", 21);
     int normalCarNumber;
     car1.totalCarNumber++;
     car2.totalCarNumber++;
@@ -74,6 +102,8 @@ int main () {
     car1.show();
     cout << "The total car number is " << car1.totalCarNumber << "." << endl;
     cout << "The result shows that the static member can be changed by formal parameter, but other member can't be chenged in this way as expected." << endl;
+    car1.showCarWithOwner(&car1Owner);
+    car2.showCarWithOwner(&car2Owner);
     delete [] normalCar;
     return 0;
 }
