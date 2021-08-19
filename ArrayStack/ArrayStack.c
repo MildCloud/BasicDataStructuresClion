@@ -54,7 +54,7 @@ char popUnion (unionStack UnionStack, int Position) {
     }
     else if (Position == 2) {
         return UnionStack->Data[UnionStack->Top2++];
-    }
+    } 
     else {
         return 'E';
     }
@@ -70,6 +70,8 @@ void showUnionStack (unionStack UnionStack) {
 }
 
 int main () {
+//access to the adress of a formal object (or an object out of its range will cause error)
+//Hence, fatal to use an function to initialize a stack, which is a pointer;
     struct sNode SNode;
     SNode.Top = -1;//Tradition
     stack Stack = & SNode;

@@ -12,6 +12,7 @@ public:
     }
 };
 typedef lNode * list;
+//initially it is not an empty list, but a list that contains only one element
 
 //Position >= 0 && Position <= lengthList
 //Be careful about the uncontinuity of the Linked List
@@ -42,7 +43,7 @@ list insertList (int InsertData ,int Position, list List) {
 //NewNode->Data = InsertData;
 //NewNode->Next = LastList->Next;
 //It cause error, since "List->Next = Newnode" changes the value of "LastList->Next";
-//The object that LastList point to doesn't change, but the value of the object changed.
+//The object that LastList points to doesn't change, but the value of the object changed.
 
 list deleteList (int Position, list List) {
     list OriList = List;
@@ -55,6 +56,13 @@ list deleteList (int Position, list List) {
     List->Next = List->Next->Next;
     return OriList;
 }
+//only change the value of the object that the pointer points to can cause effect
+//common mistake: 
+//for (int i = 0; i < Position; i++) {
+//  List = List->Next;    
+//}
+//List = List->Next;
+//return OriList;
 
 int lengthList (list List) {
     int j = 0;
@@ -96,7 +104,7 @@ void showList (list List) {
 int main () {
     int Array[10];
     lNode LNode;
-    list List;
+    list List;//Will not call the constructor
     List = & LNode;
     if (List->Next == NULL) {cout << "Null" << endl;}
 
