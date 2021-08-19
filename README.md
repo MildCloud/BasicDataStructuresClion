@@ -1,2 +1,2 @@
-# CppProjects
-C++ projects for practice and learning
+# CandCppProjects
+C & C++ projects for practice and learning
