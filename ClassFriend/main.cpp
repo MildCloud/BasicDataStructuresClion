@@ -3,52 +3,52 @@
 using namespace std;
 
 class carOwner {
-    private:
-        string name;
-        int age;
-    public:
-        friend class car;
+private:
+    string name;
+    int age;
+public:
+    friend class car;
 
-        carOwner () {
-            name = "Owner";
-            age = 0;
-        }
+    carOwner () {
+        name = "Owner";
+        age = 0;
+    }
 
-        carOwner (string n, int a) {
-            name = n;
-            age = a;
-        }
+    carOwner (string n, int a) {
+        name = n;
+        age = a;
+    }
 };
 
 
 
 class car {
-    private:
-        string brand;
-        int enginePower;
-    public:
-        static int totalCarNumber;
-    public: 
-        car () {
-            brand = "Unknown";
-            enginePower = 0;
-        }
+private:
+    string brand;
+    int enginePower;
+public:
+    static int totalCarNumber;
+public:
+    car () {
+        brand = "Unknown";
+        enginePower = 0;
+    }
 
-        car (string str, int epower) {
-            brand = str; 
-            enginePower = epower;
-        }
+    car (string str, int epower) {
+        brand = str;
+        enginePower = epower;
+    }
 
-        void setCarBrand (string str) {
-            brand = str;
-        }
+    void setCarBrand (string str) {
+        brand = str;
+    }
 
-        void show ();
+    void show ();
 
-        friend int staticCarNumber (car car);
-        friend int staticCarPointer (car * carPointer);
+    friend int staticCarNumber (car car);
+    friend int staticCarPointer (car * carPointer);
 
-        void showCarWithOwner (carOwner * carOwner);
+    void showCarWithOwner (carOwner * carOwner);
 };
 
 int car :: totalCarNumber = 0;
@@ -83,7 +83,7 @@ int main () {
     cout << "Enter the normal car number: ";
     cin >> normalCarNumber;
     normalCar = new car[normalCarNumber];
-    normalCar -> totalCarNumber += normalCarNumber; 
+    normalCar -> totalCarNumber += normalCarNumber;
     cout << "The total normal car number is " << normalCarNumber << "." << endl;
     for (int i=0; i < normalCarNumber; i++) {
         (* (normalCar + i)).show();

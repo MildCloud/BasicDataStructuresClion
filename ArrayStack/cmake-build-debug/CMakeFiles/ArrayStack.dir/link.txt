@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/ArrayStack.dir/main.c.o -o ArrayStack 
