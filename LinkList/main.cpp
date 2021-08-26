@@ -8,17 +8,17 @@ public:
 public:
     lNode () {
         Data = -99;
-        Next = NULL;
+        Next = nullptr;
     }
 };
 typedef lNode * list;
 //initially it is not an empty list, but a list that contains only one element
 
 //Position >= 0 && Position <= lengthList
-//Be careful about the uncontinuity of the Linked List
+//Be careful about the discontinuity of the Linked List
 list insertList (int InsertData ,int Position, list List) {
     list NewNode = new lNode, OriList = List;
-    NewNode->Next = NULL;
+    NewNode->Next = nullptr;
 
     if (Position == 0) {
         NewNode->Data = InsertData;
@@ -42,8 +42,8 @@ list insertList (int InsertData ,int Position, list List) {
 //List->Next = NewNode;
 //NewNode->Data = InsertData;
 //NewNode->Next = LastList->Next;
-//It cause error, since "List->Next = Newnode" changes the value of "LastList->Next";
-//The object that LastList points to doesn't change, but the value of the object changed.
+//It causes error, since "List->Next = NewNode" changes the value of "LastList->Next";
+//The object (that LastList points to) doesn't change, but the value of the object changed.
 
 list deleteList (int Position, list List) {
     list OriList = List;
@@ -66,7 +66,7 @@ list deleteList (int Position, list List) {
 
 int lengthList (list List) {
     int j = 0;
-    while (List != NULL) {
+    while (List != nullptr) {
         List = List->Next;
         j++;
     }
@@ -76,26 +76,26 @@ int lengthList (list List) {
 //Position >= 0 && Position <= lengthList - 1
 list findKthList (int Position, list List) {
     for (int i = 0; i < Position; i++) {
-        if (List == NULL) {break;}
+        if (List == nullptr) {break;}
         List = List->Next;
     }
     return List;
 }
 
 list findElementList (int Element, list List) {
-    while (List != NULL) {
+    while (List != nullptr) {
         if (List->Data == Element) {
             return List;
         }
         List = List->Next;
     }
-    return NULL;
+    return nullptr;
 }
 
 void showList (list List) {
     cout << "The List has a length of " << lengthList (List) << "." << endl;
     int ListOrder = 0;
-    while (List != NULL) {
+    while (List != nullptr) {
         cout << "List[" << ListOrder++ << "] = " << List->Data << endl;
         List = List->Next;
     }
@@ -106,7 +106,7 @@ int main () {
     lNode LNode;
     list List;//Will not call the constructor
     List = & LNode;
-    if (List->Next == NULL) {cout << "Null" << endl;}
+    if (List->Next == nullptr) {cout << "Null" << endl;}
 
     for (int i = 0; i < 10; i++) {
         Array[i] = i;
