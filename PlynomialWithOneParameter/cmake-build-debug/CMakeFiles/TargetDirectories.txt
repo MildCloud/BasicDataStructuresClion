@@ -1,0 +1,3 @@
+/home/tian-shu/Documents/C&C++Projects/PlynomialWithOneParameter/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/tian-shu/Documents/C&C++Projects/PlynomialWithOneParameter/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tian-shu/Documents/C&C++Projects/PlynomialWithOneParameter/cmake-build-debug/CMakeFiles/PlynomialWithOneParameter.dir
