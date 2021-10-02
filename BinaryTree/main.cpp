@@ -142,14 +142,6 @@ binaryTree deleteBST (binaryTree BST, int DeleteData) {
 
 int main() {
     binaryTree BST1 = nullptr;
-    int * ptrI = new int;
-    int * ptr2 = ptrI;
-    * ptrI = 1;
-    cout << * ptrI << endl;
-    delete ptr2;
-    cout << * ptrI << endl;
-    //The same effect of delete ptrI;
-    //delete operation not only remove the pointer but also remove the variable that the pointer points to;
     BST1 = insertBST(BST1, 0);
     BST1 = insertBST(BST1, -2);
     BST1 = insertBST(BST1, -3);
