@@ -200,6 +200,20 @@ void preOrderTraversal (bSTree BST) {
     }
 }
 
+void preOrderTraversalWithoutRecursion (bSTree BST) {
+    listForTree Stack = createListForTree();
+    while (true) {
+        while (BST) {
+            cout << BST->Data;
+            Stack = pushStackForTree(Stack,BST);
+            BST = BST->Left;
+        }
+        BST = popStackForTree(Stack);
+        BST = BST->Right;
+        if (!Stack->Next && !BST) {break;}
+    }
+}
+
 void inOrderTraversal (bSTree BST) {
     if (BST) {
         inOrderTraversal(BST->Left);
@@ -227,6 +241,38 @@ void postOrderTraversal (bSTree BST) {
         postOrderTraversal(BST->Left);
         postOrderTraversal(BST->Right);
         cout << BST->Data;
+    }
+}
+
+void postOrderTraversalWithoutRecursion (bSTree BST) {
+    listForTree Stack1 = createListForTree(), Stack2 = createListForTree();
+    while (true) {
+        while (BST) {
+            Stack1 = pushStackForTree(Stack1, BST);
+            Stack2 = pushStackForTree(Stack2, BST);
+            BST = BST->Right;
+        }
+        BST = popStackForTree(Stack1);
+        BST = BST->Left;
+        if (!Stack1->Next && !BST) {break;}
+    }
+    while (Stack2->Next) {
+        cout << popStackForTree(Stack2)->Data;
+    }
+}
+
+void levelOrderTraversal (bSTree BST) {
+    listForTree Queue = createListForTree();
+    while (true) {
+        cout << BST->Data;
+        if (BST->Left) {
+            Queue = insertQueueForTree(Queue, BST->Left);
+        }
+        if (BST->Right) {
+            Queue = insertQueueForTree(Queue, BST->Right);
+        }
+        if (!Queue->Next) {break;}
+        BST = deleteQueueForTree(Queue);
     }
 }
 
@@ -294,8 +340,14 @@ int main() {
     BST1 = insertBST(BST1, 3);
     BST1 = insertBST(BST1, 1);
     BST1 = insertBST(BST1, 2);
+    cout << "LevelOrderTraversal : ";
+    levelOrderTraversal(BST1);
+    cout << endl;
     cout << "PreOrderTraversal : ";
     preOrderTraversal(BST1);
+    cout << endl;
+    cout << "PreOrderTraversalWithoutRecursion : ";
+    preOrderTraversalWithoutRecursion(BST1);
     cout << endl;
     cout << "InOrderTraversal : ";
     inOrderTraversal(BST1);
@@ -305,6 +357,9 @@ int main() {
     cout << endl;
     cout << "PostOrderTraversal : ";
     postOrderTraversal(BST1);
+    cout << endl;
+    cout << "PostOrderTraversalWithoutRecursion : ";
+    postOrderTraversalWithoutRecursion(BST1);
     cout << endl;
     BST1 = deleteBST(BST1, -3);
     BST1 = deleteBST(BST1, 4);
@@ -313,6 +368,9 @@ int main() {
     cout << "PreOrderTraversal : ";
     preOrderTraversal(BST1);
     cout << endl;
+    cout << "PreOrderTraversalWithoutRecursion : ";
+    preOrderTraversalWithoutRecursion(BST1);
+    cout << endl;
     cout << "InOrderTraversal : ";
     inOrderTraversal(BST1);
     cout << endl;
@@ -321,6 +379,9 @@ int main() {
     cout << endl;
     cout << "PostOrderTraversal : ";
     postOrderTraversal(BST1);
+    cout << endl;
+    cout << "PostOrderTraversalWithoutRecursion : ";
+    postOrderTraversalWithoutRecursion(BST1);
     cout << endl;
     list List = createList(), Stack = createList(), Queue = createList();
     cout << "List : ";
