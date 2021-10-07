@@ -122,6 +122,69 @@ public:
 };
 typedef binaryNode * bSTree;
 
+//The following class and function just the copy of the lNode class and its relevant function
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+class lNodeForTree {
+public:
+    bSTree Data;
+    lNodeForTree * Next;
+};
+typedef lNodeForTree* listForTree;
+
+listForTree createListForTree () {
+    listForTree List = new lNodeForTree;
+    List->Next = nullptr;
+    return List;
+}
+
+listForTree pushStackForTree (listForTree List, bSTree NewData) {
+    listForTree OriList = List;
+    while (List->Next) {
+        List = List->Next;
+    }
+    listForTree NewNode = createListForTree();
+    NewNode->Data = NewData;
+    List->Next = NewNode;
+    return OriList;
+}
+
+bSTree popStackForTree (listForTree List) {
+    if (List->Next) {
+        while (List->Next->Next) {
+            List = List->Next;
+        }
+        listForTree Temp = List->Next;
+        bSTree PopData = Temp->Data;
+        List->Next = nullptr;
+        delete Temp;
+        return PopData;
+    }
+    else {
+        cout << "Stack Pop Error!" << endl;
+        return nullptr;
+    }
+}
+
+listForTree insertQueueForTree (listForTree List, bSTree NewData) {
+    return pushStackForTree(List, NewData);
+}
+
+bSTree deleteQueueForTree (listForTree List) {
+    if (List->Next) {
+        listForTree Temp = List->Next;
+        bSTree DeleteData = Temp->Data;
+        List->Next = List->Next->Next;
+        delete Temp;
+        return DeleteData;
+    }
+    else {
+        cout << "Queue Delete Error!" << endl;
+        return nullptr;
+    }
+}
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 bSTree findMin (bSTree BST) {
     if (BST->Left) {
         BST = findMin(BST->Left);
@@ -142,6 +205,20 @@ void inOrderTraversal (bSTree BST) {
         inOrderTraversal(BST->Left);
         cout << BST->Data;
         inOrderTraversal(BST->Right);
+    }
+}
+
+void inOrderTraversalWithoutRecursion (bSTree BST) {
+    listForTree Stack = createListForTree();
+    while (true) {
+        while (BST) {
+            Stack = pushStackForTree(Stack,BST);
+            BST = BST->Left;
+        }
+        BST = popStackForTree(Stack);
+        cout << BST->Data;
+        BST = BST->Right;
+        if (!Stack->Next && !BST) {break;}
     }
 }
 
@@ -223,6 +300,9 @@ int main() {
     cout << "InOrderTraversal : ";
     inOrderTraversal(BST1);
     cout << endl;
+    cout << "InOrderTraversalWithoutRecursion : ";
+    inOrderTraversalWithoutRecursion(BST1);
+    cout << endl;
     cout << "PostOrderTraversal : ";
     postOrderTraversal(BST1);
     cout << endl;
@@ -235,6 +315,9 @@ int main() {
     cout << endl;
     cout << "InOrderTraversal : ";
     inOrderTraversal(BST1);
+    cout << endl;
+    cout << "InOrderTraversalWithoutRecursion : ";
+    inOrderTraversalWithoutRecursion(BST1);
     cout << endl;
     cout << "PostOrderTraversal : ";
     postOrderTraversal(BST1);
