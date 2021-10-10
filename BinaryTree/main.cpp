@@ -162,12 +162,17 @@ int main() {
     postOrderTraversal(BST1);
     cout << endl;
     BST1 = deleteBST(BST1, -3);
-
     BST1 = deleteBST(BST1, 4);
-
     BST1 = deleteBST(BST1, 10);
-
     BST1 = deleteBST(BST1, 0);
-
+    cout << "PreOrderTraversal : ";
+    preOrderTraversal(BST1);
+    cout << endl;
+    cout << "InOrderTraversal : ";
+    inOrderTraversal(BST1);
+    cout << endl;
+    cout << "PostOrderTraversal : ";
+    postOrderTraversal(BST1);
+    cout << endl;
     return 0;
 }
